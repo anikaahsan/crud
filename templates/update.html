@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block contentleft %}
+
+<form action="{% url 'update' data.pk %}" method="POST">
+    {% csrf_token %}
+    <h2 style="text-align: center;"><u>Update the details</u></h2>
+    <div class="container" style="padding:1rem;">
+        <label><b>Name:</b></label>
+        {{ form.name}}
+        <br>
+        <label ><b>Address:</b></label>
+        {{ form.address}}
+        <br>
+        <label > 
+            <b> Phone number:</b>
+        </label>
+        {{ form.phone_number}}
+    </div>
+    <div  style="padding:1rem;">
+      
+        <input type="submit" href="{% url 'update' data.pk %}"  class="btn btn-primary"> 
+        
+      
+    </div>
+</form>
+
+{% endblock %}

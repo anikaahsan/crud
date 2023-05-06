@@ -1,0 +1,46 @@
+
+<script>
+    $('btnsave').click(function(){
+        console.log('save button clicked');
+        var name=$('#nameid').val();
+        var address=$('#addressid').val();
+        var phone=$('#phoneid').val();
+        if(name==''){
+            console.log('please enter name');
+
+        }
+        else if(address==''){
+            console.log('please enter address');
+        }
+        else if(phone==''){
+            console.log('please enter phone');
+        }
+        data={ name:name, address:address,phone:phone};
+
+        $.ajax(
+            {
+                url:"{% url 'ajax_create' %}",
+                method:"POST",
+                data:data,
+                success:function(data){
+                    // 
+                    if(data.status=='save'){
+                        console.log('form submission successful');
+                        console.log(data.student_data);
+                        $('form')[0].reset();
+                    }
+                    if(data.status=='not saved'){
+                        console.log("unable to save form");
+                    }
+                },
+
+
+
+            }
+        );
+
+        
+
+
+    });
+</script>
